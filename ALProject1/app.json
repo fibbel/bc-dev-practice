@@ -1,0 +1,32 @@
+{
+  "id": "679b347d-713c-4f5d-bd9e-94d97dd9f701",
+  "name": "Bonus Registration",
+  "publisher": "Binnegan Flake Corporation",
+  "version": "1.0.0.0",
+  "brief": "Extension allows to register bonuses for customers.",
+  "description": "Extension allows to register bonuses for customers and generate reports for them.",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "res/me.jpg",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "28.0.0.0",
+  "idRanges": [
+    {
+      "from": 65400,
+      "to": 65600
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "17.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
