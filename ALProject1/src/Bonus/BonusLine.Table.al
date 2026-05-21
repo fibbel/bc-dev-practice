@@ -11,7 +11,7 @@ table 65401 "MNB Bonus Line Type"
             DataClassification = CustomerContent;
             TableRelation = "MNB Bonus Header";
         }
-        field(2; Type; Enum "MNB Bonus Line Type")
+        field(2; "Type"; Enum "MNB Bonus Line Type")
         {
             Caption = 'Type';
             DataClassification = CustomerContent;
