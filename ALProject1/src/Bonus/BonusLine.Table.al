@@ -38,4 +38,36 @@ table 65401 "MNB Bonus Line Type"
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    begin
+        TestStatus();
+    end;
+
+    trigger OnModify()
+    begin
+        TestStatus();
+    end;
+
+    trigger OnDelete()
+    begin
+        TestStatus();
+    end;
+
+    trigger OnRename()
+    begin
+        TestStatus();
+    end;
+
+    var
+        StatusCannotBeReleasedErr: Label 'Status cannot be %1', Comment = '%1 - status';
+
+    local procedure TestStatus()
+    var
+        BonusHeader: Record "MNB Bonus Header";
+    begin
+        if BonusHeader.Get("Document No.") then
+            if BonusHeader.Status = BonusHeader.Status::Released then
+                Error(StatusCannotBeReleasedErr, BonusHeader.Status);
+    end;
 }
