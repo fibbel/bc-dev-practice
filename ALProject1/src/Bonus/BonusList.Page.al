@@ -41,10 +41,6 @@ page 65400 "MNB Bonus List"
                 }
             }
         }
-        area(Factboxes)
-        {
-
-        }
     }
 
     actions
