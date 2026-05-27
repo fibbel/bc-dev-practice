@@ -4,5 +4,6 @@ permissionset 65400 "MNB Bonus Reg."
     Assignable = true;
     Permissions =
         tabledata "MNB Bonus Header" = RMID,
-        tabledata "MNB Bonus Line Type" = RMID;
+        tabledata "MNB Bonus Line Type" = RMID,
+        tabledata "MNB Bonus Entry" = RMID;
 }
