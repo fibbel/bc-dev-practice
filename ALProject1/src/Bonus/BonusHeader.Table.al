@@ -52,6 +52,11 @@ table 65400 "MNB Bonus Header"
         {
             DataClassification = CustomerContent;
             Caption = 'Status';
+
+            trigger OnValidate()
+            begin
+                TestOnRelease();
+            end;
         }
 
     }
@@ -85,5 +90,12 @@ table 65400 "MNB Bonus Header"
     begin
         BonusLine.SetRange("Document No.", Rec."No.");
         BonusLine.DeleteAll();
+    end;
+
+    local procedure TestOnRelease()
+    begin
+        if Status <> Status::Released then
+            exit;
+        TestField("Customer No.");
     end;
 }
