@@ -77,5 +77,16 @@ page 65401 "MNB Bonus Card"
                 RunPageLink = "Bonus No." = field("No.");
             }
         }
+        area(Reporting)
+        {
+            action(Print)
+            {
+                ApplicationArea = All;
+                Caption = 'Print';
+                Image = Print;
+                RunObject = report "MNB Bonus Printout";
+                ToolTip = 'Prints bonus card.';
+            }
+        }
     }
 }
