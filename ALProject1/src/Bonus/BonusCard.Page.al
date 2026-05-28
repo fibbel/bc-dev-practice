@@ -25,6 +25,11 @@ page 65401 "MNB Bonus Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the customer number.';
                 }
+                field("Customer Name"; Rec."Customer Name")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the customer name.';
+                }
                 field("Starting Date"; Rec."Starting Date")
                 {
                     ApplicationArea = All;
@@ -40,6 +45,11 @@ page 65401 "MNB Bonus Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the bonus status.';
                 }
+                field("Last Released Date"; Rec."Last Released Date")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the last date and time this bonus was released.';
+                }
             }
 
             part(Lines; "MNB Bonus Subform")
@@ -47,6 +57,22 @@ page 65401 "MNB Bonus Card"
                 ApplicationArea = All;
                 Caption = 'Lines';
                 SubPageLink = "Document No." = field("No.");
+            }
+        }
+        area(FactBoxes)
+        {
+            systempart(Links; Links)
+            {
+                ApplicationArea = RecordLinks;
+            }
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = Notes;
+            }
+            part(Statistics; "MNB Bonus Statistics")
+            {
+                ApplicationArea = All;
+                SubPageLink = "No." = field("No.");
             }
         }
     }

@@ -24,6 +24,12 @@ page 65400 "MNB Bonus List"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the customer number.';
                 }
+                field("Customer Name"; Rec."Customer Name")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the customer name.';
+                    DrillDown = false;
+                }
                 field("Starting Date"; Rec."Starting Date")
                 {
                     ApplicationArea = All;

@@ -11,6 +11,11 @@ table 65400 "MNB Bonus Header"
         {
             DataClassification = CustomerContent;
             Caption = 'No.';
+
+            trigger OnValidate()
+            begin
+                TestNoSeries();
+            end;
         }
 
         field(2; "Customer No."; Code[20])
@@ -22,6 +27,7 @@ table 65400 "MNB Bonus Header"
             trigger OnValidate()
             begin
                 TestStatus();
+                CalcFields("Customer Name");
             end;
         }
         field(3; "Starting Date"; Date)
@@ -58,7 +64,26 @@ table 65400 "MNB Bonus Header"
                 TestOnRelease();
             end;
         }
-
+        field(6; "Last Released Date"; DateTime)
+        {
+            Caption = 'Last Released Date';
+            Editable = false;
+            DataClassification = SystemMetadata;
+        }
+        field(7; "Customer Name"; Text[100])
+        {
+            Caption = 'Customer Name';
+            FieldClass = FlowField;
+            CalcFormula = lookup(Customer.Name where("No." = field("Customer No.")));
+            Editable = false;
+        }
+        field(8; "Bonus Amount"; Decimal)
+        {
+            Caption = 'Bonus Amount';
+            FieldClass = FlowField;
+            Editable = false;
+            CalcFormula = sum("MNB Bonus Entry"."Bonus Amount" where("Bonus No." = field("No.")));
+        }
     }
 
     keys
@@ -73,6 +98,19 @@ table 65400 "MNB Bonus Header"
     begin
         TestStatus();
         DeleteLines();
+    end;
+
+    trigger OnInsert()
+    var
+        SalesSetup: Record "Sales & Receivables Setup";
+        NoSeries: Codeunit "No. Series";
+    begin
+        if "No." = '' then begin
+            SalesSetup.Get();
+            SalesSetup.TestField("MNB Bonus Nos.");
+            "No." := NoSeries.GetNextNo(SalesSetup."MNB Bonus Nos.", WorkDate(), true)
+        end;
+
     end;
 
     var
@@ -97,5 +135,17 @@ table 65400 "MNB Bonus Header"
         if Status <> Status::Released then
             exit;
         TestField("Customer No.");
+        "Last Released Date" := CurrentDateTime;
+    end;
+
+    local procedure TestNoSeries()
+    var
+        SalesSetup: Record "Sales & Receivables Setup";
+        NoSeries: Codeunit "No. Series";
+    begin
+        if Rec."No." <> xRec."No." then begin
+            SalesSetup.Get();
+            NoSeries.TestManual(SalesSetup."MNB Bonus Nos.");
+        end;
     end;
 }
