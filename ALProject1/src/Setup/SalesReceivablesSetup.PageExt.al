@@ -11,12 +11,4 @@ pageextension 65402 "MNB Sales & Receivables Setup" extends "Sales & Receivables
             }
         }
     }
-
-    actions
-    {
-        // Add changes to page actions here
-    }
-
-    var
-        myInt: Integer;
 }
